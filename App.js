@@ -6,27 +6,27 @@ import EmployeeApp from './src/EmployeeApp';
 
 const initState = {
   1: {
-    emid: 1,
+    empid: 1,
     empName: 'Employee One',
     empSalary: '10000.0'
   },
   2: {
-    emid: 2,
+    empid: 2,
     empName: 'Employee Two',
     empSalary: '12000.0'
   },
   3: {
-    emid: 3,
+    empid: 3,
     empName: 'Employee Three',
     empSalary: '13000.0'
   },
   4: {
-    emid: 4,
+    empid: 4,
     empName: 'Employee Four',
     empSalary: '14000.0'
   },
   5: {
-    emid: 5,
+    empid: 5,
     empName: 'Employee Five',
     empSalary: '15000.0'
   },

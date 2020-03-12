@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Card } from 'native-base';
 
 
 function mapStateToProps(state) {
@@ -9,28 +10,49 @@ function mapStateToProps(state) {
     }
 }
 
-function dispatchToProps(dispatch) {
-    goodPerformance: id => dispatch({
-        type: "GOOD_PERFORMANCE",
-        id: id
-    });
-    badPerformance: id => dispatch({
-        type: "BAD_PERFORMANCE",
-        id: id
-    })
+function mapDispatchToProps(dispatch) {
+    return {
+        goodPerformance: id => dispatch({
+            type: "GOOD_PERFORMANCE",
+            id: id
+        }),
+        badPerformance: id => dispatch({
+            type: "BAD_PERFORMANCE",
+            id: id
+        })
+    }
 }
 
 
-export default class EmployeeApp extends React.Component {
+ class EmployeeApp extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <FlatList
+      data={Object.values(this.props.data)}
+      render={ (item) =>{
+        <Card style={styles.container}>
+            <View style={styles.idContainer}>
+                <Text style={styles.idText}>
+                    {item.empid}
+                </Text>
+            </View>
+            <View style={styles.nameAndSalaryContainer}>
+                <Text style={styles.nameText}>
+                    Name: {item.empName} 
+                </Text>
+            </View>
+        </Card>
+      } }
+      keyExtractor={item => item.empid.toString()}
+      >
+          
+      </FlatList>
     );
   }
   
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeApp);
 
 const styles = StyleSheet.create({
   container: {
