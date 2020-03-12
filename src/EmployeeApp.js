@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Card } from 'native-base';
+import { Card, Icon } from 'native-base';
 
 
 function mapStateToProps(state) {
@@ -29,7 +29,7 @@ function mapDispatchToProps(dispatch) {
     return (
       <FlatList
       data={Object.values(this.props.data)}
-      render={ (item) =>{
+      render={ (item) => {
         <Card style={styles.container}>
             <View style={styles.idContainer}>
                 <Text style={styles.idText}>
@@ -40,6 +40,38 @@ function mapDispatchToProps(dispatch) {
                 <Text style={styles.nameText}>
                     Name: {item.empName} 
                 </Text>
+                <Text style={styles.salaryText}>
+                    Salary: {item.empSalary.toFixed(2)}
+                </Text>
+            </View>
+            <View style={styles.performanceIconContainer}>
+                <TouchableOpacity
+                    onPress = { () => {
+                        this.props.badPerformance(item.empid)
+                    } }
+                >
+                    <Icon
+                         ios="ios-thumbs-down"
+                         android="md-thumbs-down"
+                         style={styles.badPerformance}
+                    />
+
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress = { () => {
+                        this.props.goodPerformance(item.empid)
+                    } }
+                >
+                    <Icon
+                         ios="ios-thumbs-up"
+                         android="md-thumbs-up"
+                         style={styles.goodPerformance}
+                    />
+
+                </TouchableOpacity>
+                
+                
             </View>
         </Card>
       } }
