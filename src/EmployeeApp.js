@@ -1,6 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 
+
+function mapStateToProps(state) {
+    return {
+        data: state
+    }
+}
+
+function dispatchToProps(dispatch) {
+    goodPerformance: id => dispatch({
+        type: "GOOD_PERFORMANCE",
+        id: id
+    });
+    badPerformance: id => dispatch({
+        type: "BAD_PERFORMANCE",
+        id: id
+    })
+}
 
 
 export default class EmployeeApp extends React.Component {
