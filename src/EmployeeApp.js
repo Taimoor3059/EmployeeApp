@@ -29,7 +29,7 @@ function mapDispatchToProps(dispatch) {
     return (
       <FlatList
       data={Object.values(this.props.data)}
-      render={ (item) => {
+      renderItem={ ({item}) => (
         <Card style={styles.container}>
             <View style={styles.idContainer}>
                 <Text style={styles.idText}>
@@ -41,7 +41,7 @@ function mapDispatchToProps(dispatch) {
                     Name: {item.empName} 
                 </Text>
                 <Text style={styles.salaryText}>
-                    Salary: {item.empSalary.toFixed(2)}
+                    Salary: {item.empSalary}
                 </Text>
             </View>
             <View style={styles.performanceIconContainer}>
@@ -74,7 +74,7 @@ function mapDispatchToProps(dispatch) {
                 
             </View>
         </Card>
-      } }
+       ) }
       keyExtractor={item => item.empid.toString()}
       >
           
